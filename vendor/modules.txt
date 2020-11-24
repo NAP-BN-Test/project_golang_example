@@ -1,0 +1,24 @@
+# github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec
+## explicit
+github.com/denisenkom/go-mssqldb
+github.com/denisenkom/go-mssqldb/internal/cp
+github.com/denisenkom/go-mssqldb/internal/decimal
+github.com/denisenkom/go-mssqldb/internal/querytext
+# github.com/fatih/color v1.9.0
+## explicit
+github.com/fatih/color
+# github.com/golang-sql/civil v0.0.0-20190719163853-cb61b32ac6fe
+github.com/golang-sql/civil
+# github.com/gorilla/mux v1.7.4
+## explicit
+github.com/gorilla/mux
+# github.com/leekchan/accounting v0.0.0-20191218023648-17a4ce5f94d4
+## explicit
+# github.com/mattn/go-colorable v0.1.4
+github.com/mattn/go-colorable
+# github.com/mattn/go-isatty v0.0.11
+github.com/mattn/go-isatty
+# golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
+golang.org/x/crypto/md4
+# golang.org/x/sys v0.0.0-20191026070338-33540a1f6037
+golang.org/x/sys/unix
