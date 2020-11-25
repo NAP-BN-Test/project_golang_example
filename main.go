@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"user"
 
 	"github.com/gorilla/mux"
 )
@@ -36,12 +37,12 @@ func handleRequest() {
 	router.HandleFunc("/", homePage)
 	router.HandleFunc("/articles", allArticles).Methods("GET")
 	router.HandleFunc("/articles", allArticles).Methods("POST")
-	router.HandleFunc("/addUser/{name}", NewUser).Methods("GET")
-	router.HandleFunc("/updateUser/{name}", UpdateUser).Methods("GET")
-	router.HandleFunc("/deleteUser/{name}", deleteUser).Methods("GET")
-	router.HandleFunc("/getlistUser/{name}", AllUsers).Methods("GET")
+	router.HandleFunc("/addUser/{name}", user.NewUser).Methods("GET")
+	// router.HandleFunc("/updateUser/{name}", UpdateUser).Methods("GET")
+	// router.HandleFunc("/deleteUser/{name}", deleteUser).Methods("GET")
+	// router.HandleFunc("/getlistUser/{name}", AllUsers).Methods("GET")
 	// router.HandleFunc("/newuser", user.NewUser).Methods("POST")
-	router.HandleFunc("/connectdb", connectdb).Methods("GET")
+	// router.HandleFunc("/connectdb", connectdb).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
