@@ -2,12 +2,15 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
-	"user"
+	"go-module/c4f"
+	"go-module/table/account"
 
-	"github.com/gorilla/mux"
+	_ "github.com/denisenkom/go-mssqldb"
+
+	"fmt"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Article struct {
@@ -26,32 +29,37 @@ func allArticles(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(article)
 }
 
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to TX")
+func homePage(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"message": "Booking dates are valid!"})
+
 }
 
 func handleRequest() {
+	// router := mux.NewRouter().StrictSlash(true)
 
-	router := mux.NewRouter().StrictSlash(true)
+	// // router.HandleFunc("/", homePage)
+	// router.HandleFunc("/articles", allArticles).Methods("GET")
+	// router.HandleFunc("/articles", allArticles).Methods("POST")
+	// router.HandleFunc("/addUser/{name}", user.NewUser).Methods("GET")
+	// log.Fatal(http.ListenAndServe(":8000", router))
 
-	router.HandleFunc("/", homePage)
-	router.HandleFunc("/articles", allArticles).Methods("GET")
-	router.HandleFunc("/articles", allArticles).Methods("POST")
-	router.HandleFunc("/addUser/{name}", user.NewUser).Methods("GET")
-	// router.HandleFunc("/updateUser/{name}", UpdateUser).Methods("GET")
-	// router.HandleFunc("/deleteUser/{name}", deleteUser).Methods("GET")
-	// router.HandleFunc("/getlistUser/{name}", AllUsers).Methods("GET")
-	// router.HandleFunc("/newuser", user.NewUser).Methods("POST")
-	// router.HandleFunc("/connectdb", connectdb).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8000", router))
+	router := gin.Default()
+	// router.GET("/connect", connectdb)
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+	router.GET("/home", homePage)
+	router.GET("/user", account.AllUsers)
+	router.Run()
 }
 
 func main() {
 	// ac := accounting.Accounting{Symbol: "$", Precision: 2}
 	// fmt.Println(ac.FormatMoney(123456789.213123))
 
-	// c4f.Println("this is red color")
-
+	c4f.Println("this is red color")
 	// var a int = 100000
 	// fmt.Println(a)
 
